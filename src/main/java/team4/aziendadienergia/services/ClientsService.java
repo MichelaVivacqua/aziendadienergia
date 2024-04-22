@@ -21,6 +21,11 @@ public class ClientsService {
     @Autowired
     public ClientDAO clientDAO;
 
+    @Autowired
+    public ClientsService(ClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
     public Page<Client> findAllClients(int page, int size, String sortBy){
        if (size < 50) size = 50;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
@@ -69,6 +74,27 @@ public class ClientsService {
         Client found = this.findById(clientId);
         clientDAO.delete(found);
     }
+
+//    public List<Client> getAllClientsOrderedByProvince() {
+//        return clientDAO.findAll(Client.orderByProvince());
+//    }
+
+    public List<Client> getClientsOrderedByName() {
+        return clientDAO.findAll(Client.orderByName());
+    }
+
+    public List<Client> getClientsOrderedByAnnualRevenue() {
+        return clientDAO.findAll(Client.orderByAnnualRevenue());
+    }
+
+    public List<Client> getClientsOrderedByInputDate() {
+        return clientDAO.findAll(Client.orderByInputDate());
+    }
+
+    public List<Client> getClientsOrderedByLastContactDate() {
+        return clientDAO.findAll(Client.orderByLastContactDate());
+    }
+
 
 
 }

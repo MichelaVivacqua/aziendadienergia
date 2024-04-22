@@ -1,7 +1,9 @@
 package team4.aziendadienergia.entities;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.Predicate;
 import lombok.*;
+import org.springframework.data.jpa.domain.Specification;
 import team4.aziendadienergia.enums.ClientType;
 
 import java.time.LocalDate;
@@ -55,7 +57,41 @@ public class Client {
     @JoinColumn(name = "operative_address_id")
     private Address operativeAddress;
 
+//
+//    public static Specification<Client> orderByProvince() {
+//        return (root, query, criteriaBuilder) -> {
+//            query.orderBy(criteriaBuilder.asc(root.join("legalAddress").get("province")));
+//            return null;
+//        };
+//    }
+
+    public static Specification<Client> orderByName() {
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(criteriaBuilder.asc(root.get("businessName")));
+            return null;
+        };
+    }
+
+    public static Specification<Client> orderByAnnualRevenue() {
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(criteriaBuilder.asc(root.get("annualRevenue")));
+            return null;
+        };
+    }
+
+    public static Specification<Client> orderByInputDate() {
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(criteriaBuilder.asc(root.get("inputDate")));
+            return null;
+        };
+    }
+
+    public static Specification<Client> orderByLastContactDate() {
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(criteriaBuilder.asc(root.get("lastContactDate")));
+            return null;
+        };
 
 
-
+    }
 }
