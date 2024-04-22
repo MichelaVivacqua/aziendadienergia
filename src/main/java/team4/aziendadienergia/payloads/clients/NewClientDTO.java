@@ -1,5 +1,7 @@
 package team4.aziendadienergia.payloads.clients;
 
+import team4.aziendadienergia.enums.ClientType;
+
 import java.time.LocalDate;
 
 public record NewClientDTO (
@@ -34,12 +36,12 @@ public record NewClientDTO (
         String contactEmail,
    //  @NotEmpty(message = "Name cannot be empty.")
     // @Size(min = 3, max = 15, message = "The name must have a minimum of 3 chars and a maximum of 15.")
-        String name,
+        String contactName,
     // @NotEmpty(message = "Name cannot be empty.")
     // @Size(min = 3, max = 15, message = "The name must have a minimum of 3 characters and a maximum of 15.")
-        String surname,
+        String contactSurname,
      //  @NotEmpty(message = "Client type cannot be empty.")
-        String clientType
+        ClientType clientType
 
 
 
