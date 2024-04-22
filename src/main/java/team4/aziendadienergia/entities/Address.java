@@ -12,7 +12,7 @@ import lombok.AccessLevel;
 @NoArgsConstructor
 @Entity
 @Table(name = "addresses")
-public abstract class Address {
+public class Address {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
