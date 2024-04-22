@@ -2,6 +2,7 @@ package team4.aziendadienergia.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import team4.aziendadienergia.enums.ClientType;
 
 import java.time.LocalDate;
 import java.util.UUID;
