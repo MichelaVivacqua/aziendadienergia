@@ -1,20 +1,26 @@
-package entities;
+package team4.aziendadienergia.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "utenti")
-public class Utente {
+public class Utente implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String email;
-    private int password;
+    private String password;
     private String name;
     private String surname;
+
 
     public void setId(Integer id) {
         this.id = id;
@@ -28,7 +34,7 @@ public class Utente {
         this.email = email;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -56,11 +62,36 @@ public class Utente {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public int getPassword() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(this.ruolo.name()));
+    }
+
+    public String getPassword() {
         return password;
     }
 
@@ -83,8 +114,7 @@ public class Utente {
     private String avatar;
     private RuoloUtente ruolo;
 
-    public Utente(Integer id, String username, String email, int password, String name, String surname, String avatar, RuoloUtente ruolo) {
-        this.id = id;
+    public Utente(String username, String email, String password, String name, String surname, String avatar, RuoloUtente ruolo) {
         this.username = username;
         this.email = email;
         this.password = password;

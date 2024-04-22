@@ -1,10 +1,14 @@
-package UtenteService;
+package team4.aziendadienergia.services;
 
 
-import entities.Utente;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import team4.aziendadienergia.entities.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.UtenteRepository;
+import team4.aziendadienergia.exceptions.BadRequestException;
+import team4.aziendadienergia.exceptions.NotFoundException;
+import team4.aziendadienergia.payloads.userAndLogin.NewUtenteDTO;
+import team4.aziendadienergia.repositories.UtenteRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +18,9 @@ public class UtenteService {
 
     @Autowired
     private UtenteRepository utenteRepository;
+
+    @Autowired
+    private PasswordEncoder bcrypt;
 
     public List<Utente> getUtenti(){
         return utenteRepository.findAll();
@@ -48,11 +55,26 @@ public class UtenteService {
         return null;
     }
 
-    public Utente createUtente(Utente newUtente){
-        return utenteRepository.save(newUtente);
+//    public Utente createUtente(Utente newUtente){
+//        return utenteRepository.save(newUtente);
+//    }
+
+    public Utente createUtente(NewUtenteDTO newUtenteDTO) {
+
+        if (utenteRepository.existsByEmail(newUtenteDTO.email())) {
+            throw new BadRequestException("L'email " + newUtenteDTO.email() + " è già in uso, quindi l'utente ha già un account! Contatta l'assistenza se hai dimenticato la tua password");
+        }
+
+        Utente utente = new Utente(newUtenteDTO.username(), newUtenteDTO.email(), bcrypt.encode(newUtenteDTO.password()),newUtenteDTO.name(), newUtenteDTO.surname(), newUtenteDTO.avatar(),newUtenteDTO.ruolo());
+//        System.out.println(utente);
+        return utenteRepository.save(utente);
     }
 
     public void deleteUtente(Integer id){
         utenteRepository.deleteById(id);
+    }
+
+    public Utente findByEmail(String email) {
+        return utenteRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Utente con email " + email + " non trovato!"));
     }
 }
