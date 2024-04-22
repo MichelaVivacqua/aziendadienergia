@@ -1,4 +1,4 @@
-package entities;
+package team4.aziendadienergia.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -47,8 +47,12 @@ public class Client {
     // @ToString.Exclude
     // private List<Invoice> invoices;
 
-//    private Address legalAddress;
-//    private Address operativeAddress;
+    @OneToOne
+    @JoinColumn(name = "legal_address_id")
+    private Address legalAddress;
+    @OneToOne
+    @JoinColumn(name = "operative_address_id")
+    private Address operativeAddress;
 
 
 
