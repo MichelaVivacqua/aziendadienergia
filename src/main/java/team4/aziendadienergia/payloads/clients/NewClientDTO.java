@@ -1,4 +1,4 @@
-package team4.aziendadienergia.payloads;
+package team4.aziendadienergia.payloads.clients;
 
 import java.time.LocalDate;
 
