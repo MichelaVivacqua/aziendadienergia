@@ -1,4 +1,4 @@
-package team4.aziendadienergia.entities;
+package team4.aziendadienergia.enums;
 
 public enum ClientType {
     PA,
