@@ -22,14 +22,14 @@ public class Invoice {
     private double amount;
     private double number;
     private String status;
-    private UUID idCliente;
+    private UUID idClient;
 
-    public Invoice(LocalDate date, double amount, double number, String status, UUID idCliente) {
+    public Invoice(LocalDate date, double amount, double number, String status, UUID idClient) {
         this.date = date;
         this.amount = amount;
         this.number = number;
         this.status = status;
-        this.idCliente = idCliente;
+        this.idClient = idClient;
     }
 
 }
