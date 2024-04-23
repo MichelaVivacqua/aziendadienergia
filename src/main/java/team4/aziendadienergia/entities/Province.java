@@ -13,12 +13,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "provinces")
 public class Province {
-    @Setter
+    @Setter(AccessLevel.NONE)
     @Id
-    @Column(name = "codiceProvincia")
-    private String codiceProvincia;
+    @Column(name = "province_id")
+    private long id;
     private String name;
-    private String country;
-
-
+    private String abbreviation;
 }
