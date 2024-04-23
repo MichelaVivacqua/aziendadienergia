@@ -3,6 +3,8 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import org.springframework.stereotype.Service;
+import team4.aziendadienergia.exceptions.CSVReadingException;
+
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,10 +19,8 @@ public class MyCSVReader {
                      .withCSVParser(new CSVParserBuilder()
                              .withSeparator(';')
                              .build())
-                     .withSkipLines(1)  // Salta la prima riga, assumendo che sia l'intestazione
                      .build()) {
             return csvReader.readAll();
         }
     }
 }
-
