@@ -12,9 +12,10 @@ import lombok.AccessLevel;
 @Entity
 @Table(name = "municipalities")
 public class Municipality {
-    @Setter(AccessLevel.NONE)
+    @Setter
     @Id
     @Column(name = "municipality_id")
-    private long id;
+    private String postalCode;
     private String name;
+    private String provinceCity;
 }
