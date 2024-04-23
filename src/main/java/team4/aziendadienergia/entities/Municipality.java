@@ -18,4 +18,5 @@ public class Municipality {
     private String postalCode;
     private String name;
     private String provinceCity;
+    //CLASSE MODIFICATA PER GESTIONE DB
 }

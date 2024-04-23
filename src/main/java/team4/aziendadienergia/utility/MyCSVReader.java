@@ -17,7 +17,7 @@ public class MyCSVReader {
                      .withCSVParser(new CSVParserBuilder()
                              .withSeparator(';')
                              .build())
-                     .withSkipLines(1)  // Salta la prima riga, assumendo che sia l'intestazione
+                     .withSkipLines(1)
                      .build()) {
             return csvReader.readAll();
         }

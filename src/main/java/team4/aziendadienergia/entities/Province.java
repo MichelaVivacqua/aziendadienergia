@@ -20,5 +20,6 @@ public class Province {
     private String name;
     private String country;
 
+    //CLASSE MODIFICATA PER GESTIONE DB
 
 }
