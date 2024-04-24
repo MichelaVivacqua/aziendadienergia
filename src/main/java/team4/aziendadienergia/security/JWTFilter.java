@@ -21,10 +21,10 @@ import java.io.IOException;
 public class JWTFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JWTTools jwtTools;
+    public JWTTools jwtTools;
 
     @Autowired
-    private UtenteService utentiService;
+    public  UtenteService utenteService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -46,7 +46,7 @@ public class JWTFilter extends OncePerRequestFilter {
         //  Cerco l'utente nel DB tramite id (l'id sta nel token..)
         String id = jwtTools.extractIdFromToken(accessToken);
         int utenteId = Integer.parseInt(id);
-        Utente currentUtente = this.utentiService.getUtenteById(utenteId);
+        Utente currentUtente = this.utenteService.getUtenteById(utenteId);
 
         //  Associo l'utente alla richiesta corrente
         Authentication authentication = new UsernamePasswordAuthenticationToken(currentUtente, null, currentUtente.getAuthorities());
@@ -58,7 +58,6 @@ public class JWTFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request){
-
         return new AntPathMatcher().match("/auth/**", request.getServletPath());
     }
 }

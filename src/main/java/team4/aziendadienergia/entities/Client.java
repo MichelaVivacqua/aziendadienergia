@@ -1,5 +1,6 @@
 package team4.aziendadienergia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.Predicate;
 import lombok.*;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import team4.aziendadienergia.enums.ClientType;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 @Entity
 @Table(name = "clients")
@@ -45,10 +47,10 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private ClientType clientType;
 
-    // @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    // @JsonIgnore
-    // @ToString.Exclude
-    // private List<Invoice> invoices;
+     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+     @JsonIgnore
+     @ToString.Exclude
+     private List<Invoice> invoices;
 
     @OneToOne
     @JoinColumn(name = "legal_address_id")

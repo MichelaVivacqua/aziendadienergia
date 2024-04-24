@@ -17,7 +17,7 @@ import java.util.UUID;
 public class InvoiceController {
 
     @Autowired
-    private InvoiceService invoiceService;
+    public InvoiceService invoiceService;
 
     @GetMapping("/by-client")
     @PreAuthorize("hasAuthority('ADMIN')")
