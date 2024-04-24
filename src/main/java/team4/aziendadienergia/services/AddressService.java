@@ -36,6 +36,19 @@ public class AddressService {
         }
         return address.get();
     }
+<<<<<<< Updated upstream
 */
+=======
+
+//    public Address findByIdAndUpdate(UUID id, NewAddressDTO body){
+//        Address address = new Address();
+//        address.setMunicipality(body.municipality_id());
+//        address.set
+//
+//
+//
+//    }
+
+>>>>>>> Stashed changes
 
 }
