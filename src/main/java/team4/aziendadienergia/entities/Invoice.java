@@ -5,13 +5,15 @@ import java.util.UUID;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+@Entity
+@Table(name = "invoices")
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 @Builder
 @AllArgsConstructor
-@Table(name = "invoices")
+@ToString
 public class Invoice {
     @Setter(AccessLevel.NONE)
     @Id
@@ -22,14 +24,8 @@ public class Invoice {
     private double amount;
     private double number;
     private String status;
-    private UUID idClient;
+    @ManyToOne
+    private Client client;
 
-    public Invoice(LocalDate date, double amount, double number, String status, UUID idClient) {
-        this.date = date;
-        this.amount = amount;
-        this.number = number;
-        this.status = status;
-        this.idClient = idClient;
-    }
 
 }

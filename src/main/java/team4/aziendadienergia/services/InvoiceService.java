@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import team4.aziendadienergia.entities.Invoice;
 import team4.aziendadienergia.exceptions.NotFoundException;
 import team4.aziendadienergia.payloads.invoice.InvoicePayload;
-import team4.aziendadienergia.repositories.ClientDAO;
 import team4.aziendadienergia.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,25 +12,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
 import java.util.UUID;
 
 @Service
 public class InvoiceService {
     @Autowired
-    InvoiceRepository invoiceRepository;
-    @Autowired
-    ClientDAO clientDAO;
-
-//    @Autowired
-//    InvoicePayload invoicePayload;
+   public  InvoiceRepository invoiceRepository;
 
     public InvoiceService(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;
     }
 
-    @Autowired
-    ClientsService clientService;
 
     public List<Invoice> find() {
         return invoiceRepository.findAll();

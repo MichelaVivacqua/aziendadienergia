@@ -19,7 +19,7 @@ import java.util.List;
 public class UtenteController {
 
     @Autowired
-    UtenteService utenteService;
+   public  UtenteService utenteService;
     @GetMapping
     public List<Utente> getUtenti(){
         return utenteService.getUtenti();

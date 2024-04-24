@@ -17,10 +17,10 @@ import java.util.Optional;
 public class UtenteService {
 
     @Autowired
-    private UtenteRepository utenteRepository;
+    public  UtenteRepository utenteRepository;
 
     @Autowired
-    private PasswordEncoder bcrypt;
+    public  PasswordEncoder bcrypt;
 
     public List<Utente> getUtenti(){
         return utenteRepository.findAll();

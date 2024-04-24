@@ -1,16 +1,15 @@
 package team4.aziendadienergia.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "municipalities")
 public class Municipality {
@@ -20,7 +19,10 @@ public class Municipality {
     private String postalCode;
     private String name;
     private String provinceCity;
-    @OneToMany
-    @JoinColumn(name = "address_id")
+    @OneToMany(mappedBy = "municipality")
     private List<Address> address;
+    @ManyToOne
+    @JoinColumn(name = "province_nome")
+    private List<Province> province;
+
 }

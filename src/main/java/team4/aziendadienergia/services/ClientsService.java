@@ -24,10 +24,6 @@ public class ClientsService {
     @Autowired
     public ClientDAO clientDAO;
 
-    @Autowired
-    public ClientsService(ClientDAO clientDAO) {
-        this.clientDAO = clientDAO;
-    }
 
     public Page<Client> findAllClients(int page, int size, String sortBy){
        if (size < 50) size = 50;

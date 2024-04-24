@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class AdressDatabaseLoader {
 
     @Autowired
-    private MyCSVReader myCSVReader;
+    public MyCSVReader myCSVReader;
 
     @Autowired
-    private MunicipalityDAO municipalityDAO;
+    public MunicipalityDAO municipalityDAO;
 
     @Autowired
-    ProvinceDAO provinceDAO;
+    public ProvinceDAO provinceDAO;
 
     @PostConstruct
     public void iniettaAddress() throws Exception {
@@ -42,7 +42,7 @@ public class AdressDatabaseLoader {
                 .map(row -> {
                     Province province = new Province();
                     province.setCodiceProvincia(row[0]);
-                    province.setName(row[1]);
+                    province.setNome(row[1]);
                     province.setRegion(row[2]);
                     return province;
                 })

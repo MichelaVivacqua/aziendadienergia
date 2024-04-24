@@ -20,6 +20,8 @@ public class Utente implements UserDetails {
     private String password;
     private String name;
     private String surname;
+    private String avatar;
+    private RuoloUtente ruolo;
 
 
     public void setId(Integer id) {
@@ -111,8 +113,7 @@ public class Utente implements UserDetails {
         return ruolo;
     }
 
-    private String avatar;
-    private RuoloUtente ruolo;
+
 
     public Utente(String username, String email, String password, String name, String surname, String avatar, RuoloUtente ruolo) {
         this.username = username;

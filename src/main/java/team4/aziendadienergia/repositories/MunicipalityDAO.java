@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import team4.aziendadienergia.entities.Municipality;
 
 import java.util.UUID;
-
 @Repository
-public interface MunicipalityDAO extends JpaRepository<Municipality, UUID> {
+public interface MunicipalityDAO extends JpaRepository<Municipality, String> {
 }

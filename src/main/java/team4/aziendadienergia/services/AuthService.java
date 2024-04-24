@@ -11,13 +11,13 @@ import team4.aziendadienergia.security.JWTTools;
 @Service
 public class AuthService {
     @Autowired
-    private UtenteService utentiService;
+    public UtenteService utentiService;
 
     @Autowired
-    private JWTTools jwtTools;
+    public JWTTools jwtTools;
 
     @Autowired
-    private PasswordEncoder bcrypt;
+    public PasswordEncoder bcrypt;
 
     public String authenticateUserAndGenerateToken(UserLoginDTO payload){
 

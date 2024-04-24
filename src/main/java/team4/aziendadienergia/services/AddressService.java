@@ -12,17 +12,16 @@ import team4.aziendadienergia.entities.Address;
 import team4.aziendadienergia.exceptions.NotFoundException;
 import team4.aziendadienergia.payloads.address.NewAddressDTO;
 import team4.aziendadienergia.repositories.AddressDAO;
-import team4.aziendadienergia.repositories.MunicipalityDAO;
+
 
 @Service
 public class AddressService {
 
 
     @Autowired
-    private AddressDAO addressDAO;
+    public AddressDAO addressDAO;
 
-    @Autowired
-    private MunicipalityDAO municipalityDAO;
+
 
     public Page<Address> getAddress(int page, int size, String sort){
         if (size > 40) size = 40;
@@ -38,14 +37,20 @@ public class AddressService {
         return address.get();
     }
 
-//    public Address findByIdAndUpdate(UUID id, NewAddressDTO body){
-//        Address address = new Address();
-//        address.setMunicipality(body.municipality_id());
-//        address.set(body.municipality_id());
-//
-//
-//
-//    }
+    public Address findByIdAndUpdate(UUID id, NewAddressDTO body){
+        Address address = new Address();
+        address.setStreet(body.street());
+        address.setPostal_code(body.postal_code());
+        address.setZip_code(body.zip_code());
+        return addressDAO.save(address);
+    }
+
+        public void findByIdAndDelete(UUID id){
+        Address address = this.findById(id);
+        addressDAO.delete(address);
+    }
+
+
 
 
 }
