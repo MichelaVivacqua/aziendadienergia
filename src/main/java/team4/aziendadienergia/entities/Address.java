@@ -6,18 +6,20 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 
+import java.util.UUID;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "addresses")
-public abstract class Address {
+public  class Address {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
-    private long id;
+    private UUID id;
     private String street;
     private int postal_code;
     private int zip_code;

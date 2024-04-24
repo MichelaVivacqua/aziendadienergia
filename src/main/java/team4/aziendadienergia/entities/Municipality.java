@@ -6,6 +6,8 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +22,5 @@ public class Municipality {
     private String provinceCity;
     @OneToMany
     @JoinColumn(name = "address_id")
-    private Address address;
+    private List<Address> address;
 }
