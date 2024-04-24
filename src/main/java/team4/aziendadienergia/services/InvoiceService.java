@@ -26,6 +26,10 @@ public class InvoiceService {
 //    @Autowired
 //    InvoicePayload invoicePayload;
 
+    public InvoiceService(InvoiceRepository invoiceRepository) {
+        this.invoiceRepository = invoiceRepository;
+    }
+
     @Autowired
     ClientsService clientService;
 
@@ -57,5 +61,28 @@ public class InvoiceService {
     public Page<Invoice> filterByDate(LocalDate data, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
         return invoiceRepository.findByDate(data, pageable);
+    }
+
+    public Page<Invoice> filterByClient(UUID clientId, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return invoiceRepository.findByIdClient(clientId, pageable);
+    }
+
+    public Page<Invoice> filterByStatus(String status, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return invoiceRepository.findByStatus(status, pageable);
+    }
+
+
+    public Page<Invoice> filterByYear(int year, int page, int pageSize) {
+        LocalDate startOfYear = LocalDate.of(year, 1, 1);
+        LocalDate endOfYear = LocalDate.of(year, 12, 31);
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return invoiceRepository.findByDateBetween(startOfYear, endOfYear, pageable);
+    }
+
+    public Page<Invoice> filterByAmountRange(double minAmount, double maxAmount, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        return invoiceRepository.findByAmountBetween(minAmount, maxAmount, pageable);
     }
 }

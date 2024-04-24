@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import team4.aziendadienergia.entities.Client;
 import team4.aziendadienergia.enums.ClientType;
@@ -12,6 +13,7 @@ import team4.aziendadienergia.exceptions.NotFoundException;
 import team4.aziendadienergia.payloads.clients.NewClientDTO;
 import team4.aziendadienergia.repositories.ClientDAO;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -95,6 +97,31 @@ public class ClientsService {
         return clientDAO.findAll(Client.orderByLastContactDate());
     }
 
+//    Filtraggio per Fatturato Annuale:
+public List<Client> getClientsByAnnualRevenue(long minRevenue, long maxRevenue) {
+    Specification<Client> spec = (root, query, criteriaBuilder) ->
+            criteriaBuilder.between(root.get("annualRevenue"), minRevenue, maxRevenue);
+    return clientDAO.findAll(spec);
+}
 
+//    Filtraggio per Data di Inserimento:
+public List<Client> getClientsByInputDate(LocalDate startDate, LocalDate endDate) {
+    Specification<Client> spec = (root, query, criteriaBuilder) ->
+            criteriaBuilder.between(root.get("inputDate"), startDate, endDate);
+    return clientDAO.findAll(spec);
+}
+
+//    Filtraggio per Data di Ultimo Contatto:
+public List<Client> getClientsByLastContactDate(LocalDate startDate, LocalDate endDate) {
+    Specification<Client> spec = (root, query, criteriaBuilder) ->
+            criteriaBuilder.between(root.get("lastContactDate"), startDate, endDate);
+    return clientDAO.findAll(spec);
+}
+//    Filtraggio per Parte del Nome:
+public List<Client> getClientsByNameContains(String namePart) {
+    Specification<Client> spec = (root, query, criteriaBuilder) ->
+            criteriaBuilder.like(root.get("businessName"), "%" + namePart + "%");
+    return clientDAO.findAll(spec);
+}
 
 }
