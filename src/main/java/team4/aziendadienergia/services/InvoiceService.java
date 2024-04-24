@@ -3,6 +3,7 @@ package team4.aziendadienergia.services;
 import org.springframework.stereotype.Service;
 import team4.aziendadienergia.entities.Invoice;
 import team4.aziendadienergia.exceptions.NotFoundException;
+import team4.aziendadienergia.payloads.invoice.InvoicePayload;
 import team4.aziendadienergia.repositories.ClientDAO;
 import team4.aziendadienergia.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,35 +22,39 @@ public class InvoiceService {
     InvoiceRepository invoiceRepository;
     @Autowired
     ClientDAO clientDAO;
+    @Autowired
+    InvoicePayload invoicePayload;
 
-/*   @Autowired
-    ClientService clientService;
+    @Autowired
+    ClientsService clientService;
 
     public List<Invoice> find() {
-        return InvoiceRepository.findAll();
+        return invoiceRepository.findAll();
     }
 
     public Page<Invoice> findAll(int page, String sort) {
         Pageable pageable = PageRequest.of(page, 9, Sort.by(sort));
-        return InvoiceRepository.findAll(pageable);
+        return invoiceRepository.findAll(pageable);
     }
 
     public Invoice findById(UUID id) throws NotFoundException {
-        return InvoiceRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
-    }
-    public void findByIdAndDelete(UUID id) throws NotFoundException {
-        Invoice InvoiceFound = this.findById(id);
-        InvoiceRepository.delete(InvoiceFound);
-    }
-    public Invoice findByIdAndUpdate(UUID id, InvoicePayload body) throws NotFoundException {
-        Invoice InvoiceFound = this.findById(id);
-        InvoiceFound.setStatus(body.status());
-        InvoiceFound.setAmount(body.amount());
-        return InvoiceRepository.save(InvoiceFound);
+        return invoiceRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-    public Page<Invoice> filterByData(LocalDate data, int page, int pageSize) {
+    public void findByIdAndDelete(UUID id) throws NotFoundException {
+        Invoice InvoiceFound = this.findById(id);
+        invoiceRepository.delete(InvoiceFound);
+    }
+
+    public Invoice findByIdAndUpdate(UUID id, InvoicePayload body) throws NotFoundException {
+        Invoice invoiceFound = this.findById(id);
+        invoiceFound.setStatus(body.status());
+        invoiceFound.setAmount(body.amount());
+        return invoiceRepository.save(invoiceFound);
+    }
+
+    public Page<Invoice> filterByDate(LocalDate data, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
-        return InvoiceRepository.findByData(data, pageable);
-    }*/
+        return invoiceRepository.findByDate(data, pageable);
+    }
 }
