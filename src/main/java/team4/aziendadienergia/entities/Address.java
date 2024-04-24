@@ -20,15 +20,15 @@ public abstract class Address {
     private long id;
     private String street;
     private int postal_code;
-    private int cap;
+    private int zip_code;
     @ManyToOne
     @JoinColumn(name = "municipality_id")
     private Municipality municipality;
 
-    public Address(int postal_code, String street, int cap, Municipality municipality) {
+    public Address(int postal_code, String street, int zip_code, Municipality municipality) {
         this.postal_code = postal_code;
         this.street = street;
-        this.cap = cap;
+        this.zip_code = zip_code;
         this.municipality = municipality;
     }
 }
