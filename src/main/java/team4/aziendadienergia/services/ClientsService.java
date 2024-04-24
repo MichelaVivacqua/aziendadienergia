@@ -106,6 +106,63 @@ public class ClientsService {
         return clientDAO.findAll(Client.orderByLastContactDate());
     }
 
+    public Client updateRagioneSociale(UUID clientId, String newRagioneSociale) {
+        Client client = this.findById(clientId);
+        client.setBusinessName(newRagioneSociale);
+        return clientDAO.save(client);
+    }
 
+    public Client updateVATNumber(UUID clientId, String newVATNumber) {
+        Client client = this.findById(clientId);
+        client.setVATNumber(newVATNumber);
+        return clientDAO.save(client);
+    }
 
+    public Client updateAnnualRevenue(UUID clientId, long newAnnualRevenue) {
+        Client client = this.findById(clientId);
+        client.setAnnualRevenue(newAnnualRevenue);
+        return clientDAO.save(client);
+    }
+
+    public Client updatePEC(UUID clientId, String newPEC) {
+        Client client = this.findById(clientId);
+        client.setPec(newPEC);
+        return clientDAO.save(client);
+    }
+
+    public Client updatePhone(UUID clientId, String newPhoneNumber) {
+        Client client = this.findById(clientId);
+        client.setTelephone(newPhoneNumber);
+        return clientDAO.save(client);
+    }
+
+    public Client deleteOperativeAddress(UUID clientId) {
+        Client client = this.findById(clientId);
+        client.setOperativeAddress(null);
+        return clientDAO.save(client);
+    }
+
+    public Client updateEmail(UUID clientId, String newEmail) {
+        Client client = this.findById(clientId);
+        client.setEmail(newEmail);
+        return clientDAO.save(client);
+    }
+
+    public Client deleteLegalAddress(UUID clientId) {
+        Client client = this.findById(clientId);
+        client.setLegalAddress(null);
+        return clientDAO.save(client);
+    }
+
+    public Client updateName(UUID clientId, String newName) {
+        Client client = this.findById(clientId);
+        client.setBusinessName(newName);
+        return clientDAO.save(client);
+    }
+
+    public Client updateSurname(UUID clientId, String newSurname) {
+        Client client = this.findById(clientId);
+        client.setContactSurname(newSurname);
+        return clientDAO.save(client);
+    }
 }
