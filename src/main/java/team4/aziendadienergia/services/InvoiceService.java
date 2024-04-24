@@ -22,8 +22,9 @@ public class InvoiceService {
     InvoiceRepository invoiceRepository;
     @Autowired
     ClientDAO clientDAO;
-    @Autowired
-    InvoicePayload invoicePayload;
+
+//    @Autowired
+//    InvoicePayload invoicePayload;
 
     @Autowired
     ClientsService clientService;
