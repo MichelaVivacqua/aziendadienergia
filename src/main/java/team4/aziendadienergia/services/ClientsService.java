@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import team4.aziendadienergia.entities.Address;
 import team4.aziendadienergia.entities.Client;
 import team4.aziendadienergia.enums.ClientType;
 import team4.aziendadienergia.exceptions.NotFoundException;
@@ -54,8 +55,18 @@ public class ClientsService {
         client.setContactSurname(body.contactSurname());
         client.setClientType(ClientType.valueOf(String.valueOf(body.clientType())));
         return clientDAO.save(client);
+    }
 
+    public Client findByIdAndUpdateSedeOperativa(UUID clientId, Address newAddress) {
+        Client client = this.findById(clientId);
+        client.setOperativeAddress(newAddress);
+        return clientDAO.save(client);
+    }
 
+    public Client findByIdAndUpdateSedeLegale(UUID clientId, Address newAddress) {
+        Client client = this.findById(clientId);
+        client.setLegalAddress(newAddress);
+        return clientDAO.save(client);
     }
 
     public Client findByIdAndUpdate(UUID clientId, NewClientDTO body){

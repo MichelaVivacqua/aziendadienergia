@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import team4.aziendadienergia.entities.Address;
 import team4.aziendadienergia.entities.Client;
 import team4.aziendadienergia.payloads.clients.NewClientDTO;
 import team4.aziendadienergia.services.ClientsService;
@@ -38,6 +39,18 @@ public class ClientController {
 //    @PreAuthorize("hasAuthority('ADMIN)")
     public Client findByIdAndUpdate(@PathVariable UUID clientId, @RequestBody NewClientDTO body){
         return clientsService.saveClient(body);
+    }
+
+    @PutMapping("/{clientId}/updatesedeoperativa")
+    public Client findByIdAndUpdateSedeOperativa(@PathVariable UUID clientId, @RequestBody Address newAddress) {
+        Client client = clientsService.findById(clientId);
+        return clientsService.findByIdAndUpdateSedeOperativa(clientId, newAddress);
+    }
+
+    @PutMapping("/{clientId}/updatesedelegale")
+    public Client findByIdAndUpdateSedeLegale(@PathVariable UUID clientId, @RequestBody Address newAddress) {
+        Client client = clientsService.findById(clientId);
+        return clientsService.findByIdAndUpdateSedeLegale(clientId, newAddress);
     }
 
     @DeleteMapping("/{clientId}")

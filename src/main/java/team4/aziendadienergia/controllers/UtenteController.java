@@ -50,6 +50,7 @@ public class UtenteController {
         return utenteService.updateUtente(id, utente);
     }
 
+
     @DeleteMapping("/{id}")
     public void
     deleteUtente(@PathVariable int id){
