@@ -3,6 +3,7 @@ package team4.aziendadienergia.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import team4.aziendadienergia.entities.Invoice;
 import team4.aziendadienergia.services.InvoiceService;
@@ -19,6 +20,7 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @GetMapping("/by-client")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<Invoice>> getInvoicesByClient(
             @RequestParam("clientId") UUID clientId,
             @RequestParam("page") int page,
@@ -28,6 +30,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/by-status")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<Invoice>> getInvoicesByStatus(
             @RequestParam("status") String status,
             @RequestParam("page") int page,
@@ -37,6 +40,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/by-date")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<Invoice>> getInvoicesByDate(
             @RequestParam("date") String date,
             @RequestParam("page") int page,
@@ -47,6 +51,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/by-year")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<Invoice>> getInvoicesByYear(
             @RequestParam("year") int year,
             @RequestParam("page") int page,
@@ -56,6 +61,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/by-amount-range")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<Invoice>> getInvoicesByAmountRange(
             @RequestParam("minAmount") double minAmount,
             @RequestParam("maxAmount") double maxAmount,

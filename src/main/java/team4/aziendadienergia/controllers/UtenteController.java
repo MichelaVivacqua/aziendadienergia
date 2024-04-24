@@ -1,6 +1,7 @@
 package team4.aziendadienergia.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import team4.aziendadienergia.exceptions.BadRequestException;
@@ -35,6 +36,7 @@ public class UtenteController {
 //    }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     public NewUtenteRespDTO saveUtente(@RequestBody @Validated NewUtenteDTO body, BindingResult validation){
 
@@ -46,11 +48,13 @@ public class UtenteController {
         return new NewUtenteRespDTO(this.utenteService.createUtente(body).getId());}
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')")
     public Utente updateUtente(@PathVariable int id, @RequestBody Utente utente){
         return utenteService.updateUtente(id, utente);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('USER')")
     public void
     deleteUtente(@PathVariable int id){
         utenteService.deleteUtente(id);

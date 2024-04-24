@@ -21,7 +21,7 @@ public class ClientController {
     public ClientsService clientsService;
 
     @GetMapping
-//    @PreAuthorize("hasAuthority('ADMIN)")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Page<Client> findAllClients(@RequestParam(defaultValue = "0") int page,
                                        @RequestParam(defaultValue = "10")int size,
                                        @RequestParam(defaultValue = "name")String sortBy){
@@ -31,25 +31,26 @@ public class ClientController {
     }
 
     @GetMapping("/{clientId}")
-//    @PreAuthorize("hasAuthority('ADMIN)")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Client findById(@PathVariable UUID clientId){
         return clientsService.findById(clientId);
     }
 
 
     @PutMapping("/{clientId}")
-//    @PreAuthorize("hasAuthority('ADMIN)")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Client findByIdAndUpdate(@PathVariable UUID clientId, @RequestBody NewClientDTO body){
         return clientsService.saveClient(body);
     }
 
     @DeleteMapping("/{clientId}")
-//    @PreAuthorize("hasAuthority('ADMIN)")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteClient(@PathVariable UUID clientId){
          clientsService.deleteClient(clientId);
     }
 
     @GetMapping("/by-annual-revenue")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Client>> getClientsByAnnualRevenue(
             @RequestParam("minRevenue") long minRevenue,
             @RequestParam("maxRevenue") long maxRevenue) {
@@ -58,6 +59,7 @@ public class ClientController {
     }
 
     @GetMapping("/by-input-date")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Client>> getClientsByInputDate(
             @RequestParam("startDate") String startDate,
             @RequestParam("endDate") String endDate) {
@@ -68,6 +70,7 @@ public class ClientController {
     }
 
     @GetMapping("/by-last-contact-date")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Client>> getClientsByLastContactDate(
             @RequestParam("startDate") String startDate,
             @RequestParam("endDate") String endDate) {
@@ -78,6 +81,7 @@ public class ClientController {
     }
 
     @GetMapping("/by-name")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Client>> getClientsByNameContains(
             @RequestParam("namePart") String namePart) {
         List<Client> clients = clientsService.getClientsByNameContains(namePart);
