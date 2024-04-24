@@ -53,6 +53,7 @@ public class UtenteController {
         return utenteService.updateUtente(id, utente);
     }
 
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
     public void

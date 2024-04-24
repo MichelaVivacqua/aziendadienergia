@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import team4.aziendadienergia.entities.Address;
 import team4.aziendadienergia.entities.Client;
 import team4.aziendadienergia.enums.ClientType;
 import team4.aziendadienergia.exceptions.NotFoundException;
@@ -56,8 +57,18 @@ public class ClientsService {
         client.setContactSurname(body.contactSurname());
         client.setClientType(ClientType.valueOf(String.valueOf(body.clientType())));
         return clientDAO.save(client);
+    }
 
+    public Client findByIdAndUpdateSedeOperativa(UUID clientId, Address newAddress) {
+        Client client = this.findById(clientId);
+        client.setOperativeAddress(newAddress);
+        return clientDAO.save(client);
+    }
 
+    public Client findByIdAndUpdateSedeLegale(UUID clientId, Address newAddress) {
+        Client client = this.findById(clientId);
+        client.setLegalAddress(newAddress);
+        return clientDAO.save(client);
     }
 
     public Client findByIdAndUpdate(UUID clientId, NewClientDTO body){
@@ -97,6 +108,17 @@ public class ClientsService {
         return clientDAO.findAll(Client.orderByLastContactDate());
     }
 
+    public Client updateRagioneSociale(UUID clientId, String newRagioneSociale) {
+        Client client = this.findById(clientId);
+        client.setBusinessName(newRagioneSociale);
+        return clientDAO.save(client);
+    }
+
+    public Client updateVATNumber(UUID clientId, String newVATNumber) {
+        Client client = this.findById(clientId);
+        client.setVATNumber(newVATNumber);
+        return clientDAO.save(client);
+    }
 //    Filtraggio per Fatturato Annuale:
 public List<Client> getClientsByAnnualRevenue(long minRevenue, long maxRevenue) {
     Specification<Client> spec = (root, query, criteriaBuilder) ->
@@ -124,4 +146,51 @@ public List<Client> getClientsByNameContains(String namePart) {
     return clientDAO.findAll(spec);
 }
 
+    public Client updateAnnualRevenue(UUID clientId, long newAnnualRevenue) {
+        Client client = this.findById(clientId);
+        client.setAnnualRevenue(newAnnualRevenue);
+        return clientDAO.save(client);
+    }
+
+    public Client updatePEC(UUID clientId, String newPEC) {
+        Client client = this.findById(clientId);
+        client.setPec(newPEC);
+        return clientDAO.save(client);
+    }
+
+    public Client updatePhone(UUID clientId, String newPhoneNumber) {
+        Client client = this.findById(clientId);
+        client.setTelephone(newPhoneNumber);
+        return clientDAO.save(client);
+    }
+
+    public Client deleteOperativeAddress(UUID clientId) {
+        Client client = this.findById(clientId);
+        client.setOperativeAddress(null);
+        return clientDAO.save(client);
+    }
+
+    public Client updateEmail(UUID clientId, String newEmail) {
+        Client client = this.findById(clientId);
+        client.setEmail(newEmail);
+        return clientDAO.save(client);
+    }
+
+    public Client deleteLegalAddress(UUID clientId) {
+        Client client = this.findById(clientId);
+        client.setLegalAddress(null);
+        return clientDAO.save(client);
+    }
+
+    public Client updateName(UUID clientId, String newName) {
+        Client client = this.findById(clientId);
+        client.setBusinessName(newName);
+        return clientDAO.save(client);
+    }
+
+    public Client updateSurname(UUID clientId, String newSurname) {
+        Client client = this.findById(clientId);
+        client.setContactSurname(newSurname);
+        return clientDAO.save(client);
+    }
 }
