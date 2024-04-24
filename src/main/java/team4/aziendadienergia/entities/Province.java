@@ -18,8 +18,5 @@ public class Province {
     @Column(name = "codiceProvincia")
     private String codiceProvincia;
     private String name;
-    private String country;
-
-    //CLASSE MODIFICATA PER GESTIONE DB
-
+    private String region;
 }
