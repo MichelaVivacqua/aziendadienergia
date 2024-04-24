@@ -78,7 +78,7 @@ public class ClientsService {
     }
 
     public List<Client> getAllClientsOrderedByProvince() {
-        return clientDAO.findAllByOrderByLegalAddressIdAsc();
+        return clientDAO.findAllOrderedByLegalAddressIdAsc();
     }
 
     public List<Client> getClientsOrderedByName() {

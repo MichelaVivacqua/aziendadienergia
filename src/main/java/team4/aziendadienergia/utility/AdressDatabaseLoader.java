@@ -43,7 +43,7 @@ public class AdressDatabaseLoader {
                     Province province = new Province();
                     province.setCodiceProvincia(row[0]);
                     province.setName(row[1]);
-                    province.setCountry(row[2]);
+                    province.setRegion(row[2]);
                     return province;
                 })
                 .collect(Collectors.toList());
