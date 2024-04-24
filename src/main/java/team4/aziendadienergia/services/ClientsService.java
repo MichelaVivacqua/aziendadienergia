@@ -77,9 +77,9 @@ public class ClientsService {
         clientDAO.delete(found);
     }
 
-//    public List<Client> getAllClientsOrderedByProvince() {
-//        return clientDAO.findAll(Client.orderByProvince());
-//    }
+    public List<Client> getAllClientsOrderedByProvince() {
+        return clientDAO.findAllByOrderByLegalAddressIdAsc();
+    }
 
     public List<Client> getClientsOrderedByName() {
         return clientDAO.findAll(Client.orderByName());

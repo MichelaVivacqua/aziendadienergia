@@ -57,13 +57,7 @@ public class Client {
     @JoinColumn(name = "operative_address_id")
     private Address operativeAddress;
 
-//
-//    public static Specification<Client> orderByProvince() {
-//        return (root, query, criteriaBuilder) -> {
-//            query.orderBy(criteriaBuilder.asc(root.join("legalAddress").get("province")));
-//            return null;
-//        };
-//    }
+
 
     public static Specification<Client> orderByName() {
         return (root, query, criteriaBuilder) -> {

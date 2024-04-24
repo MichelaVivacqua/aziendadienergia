@@ -35,8 +35,9 @@ public class ClientRunner implements CommandLineRunner {
         System.out.println("\nClienti ordinati per data di ultimo contatto:");
         clientService.getClientsOrderedByLastContactDate().forEach(System.out::println);
 
-//        System.out.println("\nClienti ordinati per provincia della sede legale:");
-//        clientService.getAllClientsOrderedByProvince().forEach(System.out::println);
+        System.out.println("\nClienti ordinati per provincia della sede legale:");
+        clientService.getAllClientsOrderedByProvince().forEach(System.out::println);
+
 
         // Test dei metodi di filtro
         System.out.println("\nClienti con fatturato annuale compreso tra 10000 e 50000:");
