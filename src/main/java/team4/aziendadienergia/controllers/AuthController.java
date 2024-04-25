@@ -20,7 +20,7 @@ public class AuthController {
     public AuthService authService;
 
     @Autowired
-    public UtenteService utentiService;
+    public UtenteService utenteService;
 
     //    POST http://localhost:3001/auth/login
     @PostMapping("/login")
@@ -35,7 +35,7 @@ public class AuthController {
         if(validation.hasErrors()) {
             throw new BadRequestException(validation.getAllErrors());
         }
-        return new NewUtenteRespDTO(this.utentiService.createUtente(body).getId());
+        return new NewUtenteRespDTO(this.utenteService.createUtente(body).getId());
     }
 
 }

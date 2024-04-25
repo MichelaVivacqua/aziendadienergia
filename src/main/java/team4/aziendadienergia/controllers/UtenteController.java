@@ -56,8 +56,7 @@ public class UtenteController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('USER')")
-    public void
-    deleteUtente(@PathVariable int id){
+    public void deleteUtente(@PathVariable int id){
         utenteService.deleteUtente(id);
     }
 }
