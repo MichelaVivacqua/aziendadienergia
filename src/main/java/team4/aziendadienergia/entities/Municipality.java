@@ -1,7 +1,9 @@
 package team4.aziendadienergia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import java.util.List;
 
@@ -20,9 +22,12 @@ public class Municipality {
     private String name;
     private String provinceCity;
     @OneToMany(mappedBy = "municipality")
+    @JsonIgnore
+    @ToStringExclude
     private List<Address> address;
     @ManyToOne
     @JoinColumn(name = "province_nome")
-    private List<Province> province;
+    private Province province;
+    //
 
 }

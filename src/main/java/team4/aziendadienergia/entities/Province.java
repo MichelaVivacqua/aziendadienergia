@@ -2,8 +2,10 @@ package team4.aziendadienergia.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 import java.util.List;
 
@@ -23,5 +25,7 @@ public class Province {
     private String codiceProvincia;
     private String region;
     @OneToMany(mappedBy = "province")
+    @JsonIgnore
+    @ToStringExclude
     private List<Municipality> municipality;
 }
