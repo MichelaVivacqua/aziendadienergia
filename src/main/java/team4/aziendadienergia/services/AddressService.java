@@ -41,7 +41,7 @@ public class AddressService {
         Address address = new Address();
         address.setStreet(body.street());
         address.setPostal_code(body.postal_code());
-        address.setZip_code(body.zip_code());
+        address.setPostal_code(body.zip_code());
         return addressDAO.save(address);
     }
 
