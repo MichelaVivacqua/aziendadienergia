@@ -2,6 +2,7 @@ package team4.aziendadienergia.services;
 
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import team4.aziendadienergia.emailSender.EmailSender;
 import team4.aziendadienergia.entities.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,13 @@ import java.util.Optional;
 public class UtenteService {
 
     @Autowired
-    private UtenteRepository utenteRepository;
+    public  UtenteRepository utenteRepository;
 
     @Autowired
-    private PasswordEncoder bcrypt;
+    public  PasswordEncoder bcrypt;
+
+    @Autowired
+    public EmailSender emailSender;
 
     public List<Utente> getUtenti(){
         return utenteRepository.findAll();
@@ -67,7 +71,9 @@ public class UtenteService {
 
         Utente utente = new Utente(newUtenteDTO.username(), newUtenteDTO.email(), bcrypt.encode(newUtenteDTO.password()),newUtenteDTO.name(), newUtenteDTO.surname(), newUtenteDTO.avatar(),newUtenteDTO.ruolo());
 //        System.out.println(utente);
+        emailSender.sendRegistrationEmail(utente);
         return utenteRepository.save(utente);
+
     }
 
     public void deleteUtente(Integer id){

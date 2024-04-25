@@ -1,22 +1,31 @@
 package team4.aziendadienergia.entities;
 
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
+
+import java.util.List;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "provinces")
 public class Province {
-    @Setter(AccessLevel.NONE)
+    @Setter
     @Id
-    @Column(name = "province_id")
-    private long id;
-    private String name;
-    private String abbreviation;
+    @Column(name = "nomeProvincia")
+    private String nome;
+    private String codiceProvincia;
+    private String region;
+    @OneToMany(mappedBy = "province")
+    @JsonIgnore
+    @ToStringExclude
+    private List<Municipality> municipality;
 }

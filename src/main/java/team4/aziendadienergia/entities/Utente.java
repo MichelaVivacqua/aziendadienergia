@@ -2,6 +2,7 @@ package team4.aziendadienergia.entities;
 
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,8 +12,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "utenti")
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Utente implements UserDetails {
     @Id
+    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
@@ -20,47 +26,28 @@ public class Utente implements UserDetails {
     private String password;
     private String name;
     private String surname;
+    private String avatar;
+    @Enumerated(EnumType.STRING)
+    private RuoloUtente ruolo;
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
+    public Utente(String username, String email, String password, String name, String surname, String avatar, RuoloUtente ruolo) {
         this.username = username;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public void setRuolo(RuoloUtente ruolo) {
         this.ruolo = ruolo;
     }
 
-    public Integer getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(this.ruolo.name()));
     }
 
-    public String getUsername() {
-        return username;
-    }
+//    public String getUserEmail(){
+//        return this.email;
+//    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -80,47 +67,5 @@ public class Utente implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.ruolo.name()));
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public RuoloUtente getRuolo() {
-        return ruolo;
-    }
-
-    private String avatar;
-    private RuoloUtente ruolo;
-
-    public Utente(String username, String email, String password, String name, String surname, String avatar, RuoloUtente ruolo) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.avatar = avatar;
-        this.ruolo = ruolo;
     }
 }

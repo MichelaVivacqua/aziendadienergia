@@ -1,15 +1,16 @@
 package team4.aziendadienergia.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
+
+import java.util.UUID;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "addresses")
 public class Address {
@@ -17,7 +18,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
-    private long id;
+    private UUID id;
     private String street;
     private int postal_code;
     private String cap;
