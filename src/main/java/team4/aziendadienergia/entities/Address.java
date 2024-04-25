@@ -12,7 +12,7 @@ import lombok.AccessLevel;
 @NoArgsConstructor
 @Entity
 @Table(name = "addresses")
-public abstract class Address {
+public class Address {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +20,20 @@ public abstract class Address {
     private long id;
     private String street;
     private int postal_code;
-    private int cap;
+    private String cap;
+
     @ManyToOne
     @JoinColumn(name = "municipality_id")
     private Municipality municipality;
 
-    public Address(int postal_code, String street, int cap, Municipality municipality) {
+    @ManyToOne
+    @JoinColumn(name = "codiceProvincia")
+    private Province province;
+
+    public Address(int postal_code, String street,  Municipality municipality) {
         this.postal_code = postal_code;
         this.street = street;
-        this.cap = cap;
+        this.cap = municipality.getPostalCode();
         this.municipality = municipality;
     }
 }
