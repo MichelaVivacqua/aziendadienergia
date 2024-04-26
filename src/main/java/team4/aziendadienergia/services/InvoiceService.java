@@ -29,8 +29,9 @@ public class InvoiceService {
         return invoiceRepository.findAll();
     }
 
-    public Page<Invoice> findAll(int page, String sort) {
-        Pageable pageable = PageRequest.of(page, 9, Sort.by(sort));
+    public Page<Invoice> findAll(int page, int size,  String sort) {
+        if( size > 50) size = 50;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
         return invoiceRepository.findAll(pageable);
     }
 
