@@ -55,6 +55,7 @@ public class Client {
     @OneToOne
     @JoinColumn(name = "legal_address_id")
     private Address legalAddress;
+
     @OneToOne
     @JoinColumn(name = "operative_address_id")
     private Address operativeAddress;

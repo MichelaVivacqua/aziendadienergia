@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface AddressDAO extends JpaRepository<Address, UUID> {
-    Optional<Address> findById(String id);
+//    Optional<Address> findById(String id);
 }
