@@ -14,7 +14,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import team4.aziendadienergia.exceptions.UnauthorizedException;
 import team4.aziendadienergia.services.UtenteService;
-
 import java.io.IOException;
 
 @Component

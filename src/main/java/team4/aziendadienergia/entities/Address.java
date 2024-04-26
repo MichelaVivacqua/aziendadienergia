@@ -16,8 +16,7 @@ import java.util.UUID;
 public class Address {
     @Setter(AccessLevel.NONE)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
+    @GeneratedValue
     private UUID id;
     private String street;
     private int postal_code;

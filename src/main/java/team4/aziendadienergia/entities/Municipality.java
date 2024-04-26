@@ -17,7 +17,6 @@ import java.util.List;
 public class Municipality {
     @Setter
     @Id
-    @Column(name = "municipality_id")
     private String postalCode;
     private String name;
     private String provinceCity;

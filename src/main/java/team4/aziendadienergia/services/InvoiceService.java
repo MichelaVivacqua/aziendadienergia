@@ -20,9 +20,9 @@ public class InvoiceService {
     @Autowired
    public  InvoiceRepository invoiceRepository;
 
-    public InvoiceService(InvoiceRepository invoiceRepository) {
-        this.invoiceRepository = invoiceRepository;
-    }
+//    public InvoiceService(InvoiceRepository invoiceRepository) {
+//        this.invoiceRepository = invoiceRepository;
+//    }
 
 
     public List<Invoice> find() {

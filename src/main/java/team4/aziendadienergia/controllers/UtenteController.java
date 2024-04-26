@@ -30,10 +30,6 @@ public class UtenteController {
         return utenteService.getUtenteById(id);
     }
 
-//    @PostMapping
-//    public Utente createUtente(@RequestBody Utente utente){
-//        return utenteService.createUtente(utente);
-//    }
 
     @PostMapping
     @PreAuthorize("hasAuthority('USER')")

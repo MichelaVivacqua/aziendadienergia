@@ -6,5 +6,5 @@ import team4.aziendadienergia.entities.Province;
 
 import java.util.UUID;
 @Repository
-public interface ProvinceDAO extends JpaRepository<Province, UUID> {
+public interface ProvinceDAO extends JpaRepository<Province, String> {
 }
