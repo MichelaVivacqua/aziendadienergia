@@ -20,7 +20,6 @@ import java.util.List;
 public class Province {
     @Setter
     @Id
-    @Column(name = "nomeProvincia")
     private String nome;
     private String codiceProvincia;
     private String region;

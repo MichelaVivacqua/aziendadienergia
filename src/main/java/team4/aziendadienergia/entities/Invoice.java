@@ -17,8 +17,7 @@ import lombok.*;
 public class Invoice {
     @Setter(AccessLevel.NONE)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "invoice_id")
+    @GeneratedValue
     private UUID id;
     private LocalDate date;
     private double amount;
