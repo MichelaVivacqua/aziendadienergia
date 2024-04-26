@@ -20,11 +20,11 @@
 //    }
 //
 //    public void sendRegistrationEmail(Utente recipient){
-//      HttpResponse<JsonNode> response =  Unirest.post("https://api.mailgun.net/v3/" + this.domainName + "/messsages")
+//      HttpResponse<JsonNode> response =  Unirest.post("https://api.mailgun.net/v3/" + this.domainName + "/messages")
 //                .basicAuth("api", this.apiKey)
 //                .queryString("from","wendydeluca96@hotmail.com")
 //                .queryString("to",recipient.getEmail())
-//                .queryString("subject", "Succesfully registered!")
+//                .queryString("subject", "Successfully registered!")
 //                .queryString("text","Thanks" + recipient.getEmail() + "for your registration! ")
 //                .asJson();
 //        System.out.println(response);
