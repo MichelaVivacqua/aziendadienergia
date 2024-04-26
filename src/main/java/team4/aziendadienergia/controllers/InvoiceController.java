@@ -19,15 +19,15 @@ public class InvoiceController {
     @Autowired
     public InvoiceService invoiceService;
 
-    @GetMapping("/by-client")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Page<Invoice>> getInvoicesByClient(
-            @RequestParam("clientId") UUID clientId,
-            @RequestParam("page") int page,
-            @RequestParam("pageSize") int pageSize) {
-        Page<Invoice> invoices = invoiceService.filterByClient(clientId, page, pageSize);
-        return ResponseEntity.ok(invoices);
-    }
+//    @GetMapping("/by-client")
+//    @PreAuthorize("hasAuthority('ADMIN')")
+//    public ResponseEntity<Page<Invoice>> getInvoicesByClient(
+//            @RequestParam("clientId") UUID clientId,
+//            @RequestParam("page") int page,
+//            @RequestParam("pageSize") int pageSize) {
+//        Page<Invoice> invoices = invoiceService.filterByClient(clientId, page, pageSize);
+//        return ResponseEntity.ok(invoices);
+//    }
 
     @GetMapping("/by-status")
     @PreAuthorize("hasAuthority('ADMIN')")

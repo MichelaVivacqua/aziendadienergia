@@ -29,13 +29,13 @@ public class AddressService {
         return addressDAO.findAll(pageable);
     }
 
-    public Address findById(UUID id) throws NotFoundException {
-        Optional<Address> address = addressDAO.findById(String.valueOf(id));
-        if (address.isEmpty()) {
-            throw new NotFoundException(id);
-        }
-        return address.get();
-    }
+//    public Address findById(UUID id) throws NotFoundException {
+//        Optional<Address> address = addressDAO.findById(String.valueOf(id));
+//        if (address.isEmpty()) {
+//            throw new NotFoundException(id);
+//        }
+//        return address.get();
+//    }
 
     public Address findByIdAndUpdate(UUID id, NewAddressDTO body){
         Address address = new Address();
@@ -45,10 +45,10 @@ public class AddressService {
         return addressDAO.save(address);
     }
 
-        public void findByIdAndDelete(UUID id){
-        Address address = this.findById(id);
-        addressDAO.delete(address);
-    }
+//        public void findByIdAndDelete(UUID id){
+//        Address address = this.findById(id);
+//        addressDAO.delete(address);
+//    }
 
 
 

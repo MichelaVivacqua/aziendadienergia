@@ -56,10 +56,10 @@ public class InvoiceService {
         return invoiceRepository.findByDate(data, pageable);
     }
 
-    public Page<Invoice> filterByClient(UUID clientId, int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize);
-        return invoiceRepository.findByIdClient(clientId, pageable);
-    }
+//    public Page<Invoice> filterByClient(UUID clientId, int page, int pageSize) {
+//        Pageable pageable = PageRequest.of(page, pageSize);
+//        return invoiceRepository.findByIdClient(clientId, pageable);
+//    }
 
     public Page<Invoice> filterByStatus(String status, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);

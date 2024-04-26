@@ -2,7 +2,6 @@ package team4.aziendadienergia.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Predicate;
 import lombok.*;
 import org.springframework.data.jpa.domain.Specification;
 import team4.aziendadienergia.enums.ClientType;
@@ -10,6 +9,7 @@ import team4.aziendadienergia.enums.ClientType;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+
 @Entity
 @Table(name = "clients")
 @Getter
@@ -47,20 +47,23 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private ClientType clientType;
 
-     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-     @JsonIgnore
-     @ToString.Exclude
-     private List<Invoice> invoices;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ToString.Exclude
+    private List
+            <Invoice> invoices;
 
     @OneToOne
     @JoinColumn(name = "legal_address_id")
     private Address legalAddress;
+
     @OneToOne
     @JoinColumn(name = "operative_address_id")
     private Address operativeAddress;
 
+    // Metodi getter, setter e altri metodi della classe Client...
 
-
+    // Metodi di specifica per l'ordinamento dei clienti
     public static Specification<Client> orderByName() {
         return (root, query, criteriaBuilder) -> {
             query.orderBy(criteriaBuilder.asc(root.get("businessName")));
@@ -87,7 +90,5 @@ public class Client {
             query.orderBy(criteriaBuilder.asc(root.get("lastContactDate")));
             return null;
         };
-
-
     }
 }
