@@ -24,6 +24,7 @@ public class Invoice {
     private double number;
     private String status;
     @ManyToOne
+    @JoinColumn(name = "invoice_id")
     private Client client;
 
 
