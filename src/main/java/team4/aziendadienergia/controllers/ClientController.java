@@ -31,6 +31,14 @@ public class ClientController {
 
     }
 
+    @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public Client saveClient(NewClientDTO body){
+        return clientsService.saveClient(body);
+
+    }
+
+
     @GetMapping("/{clientId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Client findById(@PathVariable UUID clientId){
@@ -41,6 +49,7 @@ public class ClientController {
     @PutMapping("/{clientId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Client findByIdAndUpdate(@PathVariable UUID clientId, @RequestBody NewClientDTO body){
+
         return clientsService.saveClient(body);
     }
 

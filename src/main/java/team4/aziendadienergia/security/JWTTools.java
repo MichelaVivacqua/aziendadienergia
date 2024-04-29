@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import team4.aziendadienergia.entities.Utente;
 import team4.aziendadienergia.exceptions.UnauthorizedException;
-
 import java.util.Date;
 
 @Component

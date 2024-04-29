@@ -23,8 +23,8 @@ public class UtenteService {
     @Autowired
     public  PasswordEncoder bcrypt;
 
-    @Autowired
-    public EmailSender emailSender;
+//    @Autowired
+//    public EmailSender emailSender;
 
     public List<Utente> getUtenti(){
         return utenteRepository.findAll();
@@ -71,7 +71,7 @@ public class UtenteService {
 
         Utente utente = new Utente(newUtenteDTO.username(), newUtenteDTO.email(), bcrypt.encode(newUtenteDTO.password()),newUtenteDTO.name(), newUtenteDTO.surname(), newUtenteDTO.avatar(),newUtenteDTO.ruolo());
 //        System.out.println(utente);
-        emailSender.sendRegistrationEmail(utente);
+
         return utenteRepository.save(utente);
 
     }

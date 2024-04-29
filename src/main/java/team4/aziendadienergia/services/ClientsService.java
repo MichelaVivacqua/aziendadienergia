@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import team4.aziendadienergia.emailSender.EmailSender;
 import team4.aziendadienergia.entities.Address;
 import team4.aziendadienergia.entities.Client;
 import team4.aziendadienergia.enums.ClientType;
@@ -23,7 +24,8 @@ public class ClientsService {
 
     @Autowired
     public ClientDAO clientDAO;
-
+    @Autowired
+    public EmailSender emailSender;
 
     public Page<Client> findAllClients(int page, int size, String sortBy){
        if (size < 50) size = 50;
@@ -37,7 +39,7 @@ public class ClientsService {
     }
 
 
-    public Client saveClient( NewClientDTO body){
+    public Client saveClient(NewClientDTO body){
         Client client = new Client();
         client.setBusinessName(body.businessName());
         client.setVATNumber(body.VATNumber());
@@ -52,6 +54,7 @@ public class ClientsService {
         client.setContactName(body.contactName());
         client.setContactSurname(body.contactSurname());
         client.setClientType(ClientType.valueOf(String.valueOf(body.clientType())));
+        emailSender.sendRegistrationEmail(client);
         return clientDAO.save(client);
     }
 

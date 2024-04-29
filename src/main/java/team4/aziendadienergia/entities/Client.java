@@ -60,6 +60,23 @@ public class Client {
     @JoinColumn(name = "operative_address_id")
     private Address operativeAddress;
 
+    public Client(String businessName,String VATNumber,String email, LocalDate inputDate, LocalDate lastContactDate,long annualRevenue,String pec,String telephone,String contactEmail,String contactName,String contactSurname,String contactPhoneNumber,String logo ){
+        this.businessName=businessName;
+        this.VATNumber=VATNumber;
+        this.email=email;
+        this.inputDate=inputDate;
+        this.lastContactDate=lastContactDate;
+        this.annualRevenue=annualRevenue;
+        this.pec=pec;
+        this.telephone=telephone;
+        this.contactEmail=contactEmail;
+        this.contactName=contactName;
+        this.contactSurname=contactSurname;
+        this.contactPhoneNumber=contactPhoneNumber;
+        this.logo=logo;
+
+    }
+
 
 
     public static Specification<Client> orderByName() {
